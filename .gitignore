@@ -1,0 +1,1 @@
+# Node\nnode_modules/\n.npm\n.next/\nout/\n.next-cache/\n*.log\n.env*\n.DS_Store\n# Python\n.venv/\n__pycache__/\n*.py[cod]\n*.pyo\n*.pyd\n*.egg-info/\n.env/\n.mypy_cache/\n.pytest_cache/\n.ruff_cache/\n\n# Editors\n.vscode/\n.idea/\n

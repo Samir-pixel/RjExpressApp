@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./frontend
+    container_name: rj-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    container_name: rj-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
