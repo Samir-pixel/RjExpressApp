@@ -43,6 +43,17 @@ docker compose down
 
 📚 Подробная инструкция по Docker: см. [DOCKER_SETUP.md](DOCKER_SETUP.md)
 
+## 🚀 Деплой на Production
+
+📖 Полная инструкция по деплою: см. [DEPLOYMENT_RAILWAY_VERCEL.md](DEPLOYMENT_RAILWAY_VERCEL.md)
+
+### Быстрый старт (Railway + Vercel):
+1. **Backend на Railway**: Импортируйте репозиторий, укажите Root Directory: `backend`, добавьте переменные из [RAILWAY_ENV_VARS.md](RAILWAY_ENV_VARS.md)
+2. **Frontend на Vercel**: Импортируйте репозиторий, укажите Root Directory: `frontend`, добавьте переменные из [VERCEL_ENV_VARS.md](VERCEL_ENV_VARS.md) с Railway URL
+3. **Домен**: Подключите `rjexpressinc.io` в Vercel и настройте DNS
+
+Детали: см. [DEPLOYMENT_RAILWAY_VERCEL.md](DEPLOYMENT_RAILWAY_VERCEL.md)
+
 ## Env
 
 ### Backend Environment Variables
