@@ -28,16 +28,53 @@ pip install -r requirements.txt
 
 Docker Compose:
 ```bash
+# Сборка и запуск
 docker compose up --build
+
+# Запуск в фоновом режиме
+docker compose up -d --build
+
+# Просмотр логов
+docker compose logs -f
+
+# Остановка
+docker compose down
 ```
+
+📚 Подробная инструкция по Docker: см. [DOCKER_SETUP.md](DOCKER_SETUP.md)
 
 ## Env
 
-backend/.env
-```
-TELEGRAM_BOT_TOKEN=
-TELEGRAM_CHAT_ID=
+### Backend Environment Variables
+
+Create `backend/.env` file:
+
+```env
+TELEGRAM_BOT_TOKEN=8122687393:AAEY6jIPIojjPGHSQb9HS89zS1tXOW1klXs
+TELEGRAM_CHAT_ID=YOUR_CHAT_ID_HERE
 WHATSAPP_API_KEY=
 ```
+
+### Getting Telegram Chat ID
+
+1. Start a conversation with your bot in Telegram
+2. Send any message to your bot
+3. Run the helper script:
+   ```bash
+   cd backend
+   python get_chat_id.py
+   ```
+4. Copy the `Chat ID` from the output and add it to `backend/.env` as `TELEGRAM_CHAT_ID`
+
+Alternatively, you can get your chat ID manually:
+- For personal chats: Start a chat with @userinfobot
+- For group chats: Add @RawDataBot to your group, it will show the chat ID
+
+### Testing Telegram Integration
+
+After setting up the `.env` file:
+1. Start the backend server
+2. Submit a form from the "Join Our Team" section
+3. Check your Telegram chat - you should receive a formatted message with the lead details
 
 
