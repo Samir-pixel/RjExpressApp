@@ -80,27 +80,31 @@ PORT=8000
 
 ### 2.2 Настройка проекта
 
-**КРИТИЧЕСКИ ВАЖНО:** При создании проекта в Vercel:
+**⚠️ КРИТИЧЕСКИ ВАЖНО:** При создании проекта в Vercel:
 
-1. После импорта репозитория, НЕ нажимайте "Deploy" сразу
-2. Нажмите **"Configure Project"** или **"Settings"**
-3. Найдите раздел **"Root Directory"**
-4. Установите: `frontend`
-5. Нажмите **"Save"** или **"Continue"**
+1. После импорта репозитория, **НЕ нажимайте "Deploy" сразу!**
+2. Найдите раздел **"Configure Project"** или прокрутите вниз до **"Root Directory"**
+3. Установите **Root Directory**: `frontend` (без слеша, без точек!)
+4. Нажмите **"Save"** или **"Continue"**
+5. **Только после этого** нажмите **"Deploy"**
 
 **Build Settings (после установки Root Directory):**
 - **Framework Preset**: Next.js (автоматически определится)
-- **Root Directory**: `frontend` (должно быть установлено!)
+- **Root Directory**: `frontend` (ОБЯЗАТЕЛЬНО должно быть установлено!)
 - **Build Command**: `npm run build` (автоматически)
 - **Output Directory**: `.next` (автоматически)
 - **Install Command**: `npm install` (автоматически)
 
 **Если Root Directory не установлен:**
-Vercel будет искать `package.json` в корне репозитория и выдаст ошибку:
-```
-npm error path /vercel/path0/package.json
-npm error errno -2 ENOENT: no such file or directory
-```
+Vercel будет искать `package.json` в корне репозитория и выдаст ошибки:
+- `npm error path /vercel/path0/package.json ENOENT`
+- `404: NOT_FOUND` после деплоя
+
+**Если получаете 404 после деплоя:**
+1. Проверьте Root Directory в Settings → General
+2. Убедитесь, что значение точно `frontend` (не `/frontend`, не `./frontend`)
+3. Пересоберите проект (Redeploy)
+4. См. также: [VERCEL_404_FIX.md](VERCEL_404_FIX.md)
 
 **Environment Variables:**
 Добавьте переменные:
