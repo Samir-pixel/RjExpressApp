@@ -80,14 +80,27 @@ PORT=8000
 
 ### 2.2 Настройка проекта
 
-В настройках проекта:
+**КРИТИЧЕСКИ ВАЖНО:** При создании проекта в Vercel:
 
-**Build Settings:**
+1. После импорта репозитория, НЕ нажимайте "Deploy" сразу
+2. Нажмите **"Configure Project"** или **"Settings"**
+3. Найдите раздел **"Root Directory"**
+4. Установите: `frontend`
+5. Нажмите **"Save"** или **"Continue"**
+
+**Build Settings (после установки Root Directory):**
 - **Framework Preset**: Next.js (автоматически определится)
-- **Root Directory**: `frontend` (ВАЖНО! Установите это вручную)
-- **Build Command**: `npm run build` (будет автоматически, если Root Directory правильный)
-- **Output Directory**: `.next` (будет автоматически)
-- **Install Command**: `npm install` (будет автоматически)
+- **Root Directory**: `frontend` (должно быть установлено!)
+- **Build Command**: `npm run build` (автоматически)
+- **Output Directory**: `.next` (автоматически)
+- **Install Command**: `npm install` (автоматически)
+
+**Если Root Directory не установлен:**
+Vercel будет искать `package.json` в корне репозитория и выдаст ошибку:
+```
+npm error path /vercel/path0/package.json
+npm error errno -2 ENOENT: no such file or directory
+```
 
 **Environment Variables:**
 Добавьте переменные:
