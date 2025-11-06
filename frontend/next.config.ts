@@ -9,9 +9,9 @@ const nextConfig: NextConfig = {
     // Skip type checking during production builds to prevent build failures in Docker
     ignoreBuildErrors: true,
   },
-  // Standalone output only for Docker, not for Vercel
-  // Vercel uses its own optimized build system
-  output: process.env.DOCKER_BUILD === "true" ? "standalone" : undefined,
+  // Standalone output only for Docker builds
+  // Vercel doesn't need this - it uses its own optimized build system
+  ...(process.env.DOCKER_BUILD === "true" && { output: "standalone" }),
 };
 
 export default nextConfig;

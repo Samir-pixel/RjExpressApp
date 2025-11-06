@@ -10,8 +10,12 @@ const geistSans = Geist({
   fallback: ["system-ui", "arial"],
 });
 
+// Get site URL from environment or use default
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://rjexpressinc.io");
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://rjexpressinc.io"),
+  metadataBase: new URL(siteUrl),
   title: "RJ EXPRESS INC — Driven by Trust. Powered by Opportunity.",
   description: "American trucking company providing reliable routes across Eastern and Central USA. Join our team of professional drivers.",
   keywords: [
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
     title: "RJ EXPRESS INC — Drive with Confidence. Earn More.",
     description:
       "Reliable transportation across Eastern & Central USA. Join our professional team of drivers.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://rjexpressinc.io",
+    url: siteUrl,
     siteName: "RJ EXPRESS INC",
     images: [
       {
