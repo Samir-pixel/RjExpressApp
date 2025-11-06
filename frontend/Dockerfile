@@ -19,6 +19,7 @@ COPY . .
 # Build arguments (optional, can be overridden)
 ARG NEXT_PUBLIC_BACKEND_URL
 ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+ENV DOCKER_BUILD=true
 
 # Build the application
 RUN npm run build

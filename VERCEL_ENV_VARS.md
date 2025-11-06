@@ -5,6 +5,7 @@
 ```env
 BACKEND_URL=https://your-railway-backend-url.railway.app
 NODE_ENV=production
+NEXT_PUBLIC_SITE_URL=https://rjexpressinc.io
 ```
 
 **Важно:**

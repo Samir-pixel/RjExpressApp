@@ -11,6 +11,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://rjexpressinc.io"),
   title: "RJ EXPRESS INC — Driven by Trust. Powered by Opportunity.",
   description: "American trucking company providing reliable routes across Eastern and Central USA. Join our team of professional drivers.",
   keywords: [
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     title: "RJ EXPRESS INC — Drive with Confidence. Earn More.",
     description:
       "Reliable transportation across Eastern & Central USA. Join our professional team of drivers.",
-    url: "https://rjexpress.example.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://rjexpressinc.io",
     siteName: "RJ EXPRESS INC",
     images: [
       {
