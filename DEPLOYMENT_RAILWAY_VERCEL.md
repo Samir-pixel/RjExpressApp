@@ -83,21 +83,23 @@ PORT=8000
 В настройках проекта:
 
 **Build Settings:**
-- **Framework Preset**: Next.js
-- **Root Directory**: `frontend` (важно!)
-- **Build Command**: `npm run build` (будет автоматически)
+- **Framework Preset**: Next.js (автоматически определится)
+- **Root Directory**: `frontend` (ВАЖНО! Установите это вручную)
+- **Build Command**: `npm run build` (будет автоматически, если Root Directory правильный)
 - **Output Directory**: `.next` (будет автоматически)
+- **Install Command**: `npm install` (будет автоматически)
 
 **Environment Variables:**
 Добавьте переменные:
 
 ```env
-NEXT_PUBLIC_BACKEND_URL=https://your-backend.railway.app
 BACKEND_URL=https://your-backend.railway.app
 NODE_ENV=production
 ```
 
-**Важно:** Замените `your-backend.railway.app` на реальный URL из Railway!
+**Важно:** 
+- Замените `your-backend.railway.app` на реальный URL из Railway!
+- `NEXT_PUBLIC_BACKEND_URL` не требуется
 
 ### 2.3 Деплой
 
