@@ -3,7 +3,6 @@
 Скопируйте и вставьте в Vercel → Project Settings → Environment Variables:
 
 ```env
-NEXT_PUBLIC_BACKEND_URL=https://your-railway-backend-url.railway.app
 BACKEND_URL=https://your-railway-backend-url.railway.app
 NODE_ENV=production
 ```
@@ -11,7 +10,10 @@ NODE_ENV=production
 **Важно:**
 1. Замените `your-railway-backend-url.railway.app` на реальный URL из Railway
 2. URL можно найти в Railway → Settings → Networking → Public Domain
-3. После добавления переменных, пересоберите проект в Vercel
+3. **Убедитесь, что значение - это строка (в кавычках не нужно, просто URL)**
+4. После добавления переменных, пересоберите проект в Vercel
+
+**Примечание:** `NEXT_PUBLIC_BACKEND_URL` не требуется, так как используется только `BACKEND_URL` в API route.
 
 ## Шаги:
 
