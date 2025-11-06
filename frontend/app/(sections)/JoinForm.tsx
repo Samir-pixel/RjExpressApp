@@ -6,9 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  phone: z.string().min(5, "Valid phone number required"),
-  experience: z.string().min(1, "Experience required"),
+  name: z.string().min(1, "Name is required").trim(),
+  phone: z.string()
+    .min(1, "Phone number is required")
+    .regex(/^\+?[0-9\s\-\(\)]{7,20}$/, "Valid phone number required"),
+  experience: z.string()
+    .min(1, "Experience is required")
+    .refine((val) => val.trim().length > 0, "Experience is required"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -19,7 +23,12 @@ export default function JoinForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<FormData>({ 
+    resolver: zodResolver(schema),
+    mode: "onSubmit", // Валидация только при отправке формы - все поля валидируются сразу
+    reValidateMode: "onBlur", // После первой валидации, повторная при потере фокуса
+    shouldUnregister: false, // Сохранять значения полей
+  });
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -77,6 +86,7 @@ export default function JoinForm() {
               
               <div>
                 <input 
+                  type="tel"
                   className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 focus:border-[#E6B400] focus:outline-none transition-colors" 
                   placeholder="Phone/WhatsApp" 
                   {...register("phone")} 
@@ -86,6 +96,8 @@ export default function JoinForm() {
               
               <div>
                 <input 
+                  type="text"
+                  inputMode="numeric"
                   className="w-full rounded-lg border-2 border-gray-200 px-4 py-3 focus:border-[#E6B400] focus:outline-none transition-colors" 
                   placeholder="Years of Experience" 
                   {...register("experience")} 
