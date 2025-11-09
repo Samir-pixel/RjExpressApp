@@ -28,8 +28,11 @@ BACKEND_URL=https://rj-express-backend-production.railway.app
 ```
 BACKEND_URL=http://rj-express-backend-production.railway.app  ❌ (без https)
 BACKEND_URL="https://rj-express-backend-production.railway.app"  ❌ (с кавычками)
-BACKEND_URL=rj-express-backend-production.railway.app  ❌ (без https://)
+BACKEND_URL=rj-express-backend-production.railway.app  ⚠️ (без https:// - будет автоматически добавлен, но лучше указать явно)
+BACKEND_URL=https://rj-express-backend-production.railway.app/  ⚠️ (со слешем в конце - будет удален автоматически)
 ```
+
+**Примечание:** Если вы забыли указать `https://`, код автоматически добавит его, но **рекомендуется указывать полный URL с протоколом** для избежания проблем.
 
 **Примечание:** `NEXT_PUBLIC_BACKEND_URL` не требуется, так как используется только `BACKEND_URL` в API route.
 
