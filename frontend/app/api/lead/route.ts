@@ -1,14 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
+// Get backend URL from environment variables
+// In production (Vercel), this should be set to Railway URL
+// In development, defaults to localhost
+const BACKEND_URL = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    console.log("📤 Sending request to backend:", BACKEND_URL);
+    // Validate BACKEND_URL is set
+    if (!BACKEND_URL || BACKEND_URL === "http://localhost:8000") {
+      console.error("❌ BACKEND_URL not configured! Current value:", BACKEND_URL);
+      return NextResponse.json(
+        { 
+          ok: false, 
+          error: "Backend server not configured. Please set BACKEND_URL environment variable in Vercel settings." 
+        },
+        { status: 503 }
+      );
+    }
     
-    const response = await fetch(`${BACKEND_URL}/lead`, {
+    const apiUrl = `${BACKEND_URL}/lead`;
+    console.log("📤 Sending request to backend:", apiUrl);
+    
+    const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,6 +37,18 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("❌ Backend error:", response.status, errorText);
+      
+      // More specific error messages
+      if (response.status === 404) {
+        return NextResponse.json(
+          { 
+            ok: false, 
+            error: `Backend endpoint not found (404). Please check that BACKEND_URL is correct: ${BACKEND_URL}. The endpoint should be: ${BACKEND_URL}/lead` 
+          },
+          { status: 404 }
+        );
+      }
+      
       return NextResponse.json(
         { 
           ok: false, 

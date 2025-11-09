@@ -189,7 +189,7 @@ export default function RoutesMap() {
   }, []);
 
   return (
-    <section className="py-16 bg-[#0B1221] text-white">
+    <section id="routes" className="py-16 bg-[#0B1221] text-white">
       <div className="max-w-[1000px] mx-auto px-4 sm:px-0">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

@@ -1,5 +1,9 @@
 # Переменные окружения для Vercel
 
+## ⚠️ КРИТИЧЕСКИ ВАЖНО: BACKEND_URL
+
+**Без этой переменной форма не будет работать!** Вы получите ошибку `404. Not Found`.
+
 Скопируйте и вставьте в Vercel → Project Settings → Environment Variables:
 
 ```env
@@ -9,10 +13,23 @@ NEXT_PUBLIC_SITE_URL=https://rjexpressinc.io
 ```
 
 **Важно:**
-1. Замените `your-railway-backend-url.railway.app` на реальный URL из Railway
+1. **BACKEND_URL** - ОБЯЗАТЕЛЬНАЯ переменная! Замените `your-railway-backend-url.railway.app` на реальный URL из Railway
 2. URL можно найти в Railway → Settings → Networking → Public Domain
 3. **Убедитесь, что значение - это строка (в кавычках не нужно, просто URL)**
-4. После добавления переменных, пересоберите проект в Vercel
+4. URL должен начинаться с `https://` (не `http://`)
+5. После добавления переменных, **ОБЯЗАТЕЛЬНО пересоберите проект** в Vercel (Redeploy)
+
+**Пример правильного значения:**
+```
+BACKEND_URL=https://rj-express-backend-production.railway.app
+```
+
+**Неправильные примеры:**
+```
+BACKEND_URL=http://rj-express-backend-production.railway.app  ❌ (без https)
+BACKEND_URL="https://rj-express-backend-production.railway.app"  ❌ (с кавычками)
+BACKEND_URL=rj-express-backend-production.railway.app  ❌ (без https://)
+```
 
 **Примечание:** `NEXT_PUBLIC_BACKEND_URL` не требуется, так как используется только `BACKEND_URL` в API route.
 
