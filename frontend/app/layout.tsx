@@ -16,8 +16,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ||
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "RJ EXPRESS INC — Driven by Trust. Powered by Opportunity.",
-  description: "American trucking company providing reliable routes across Eastern and Central USA. Join our team of professional drivers.",
+  title: {
+    default: "RJ EXPRESS INC — Driven by Trust. Powered by Opportunity.",
+    template: "%s | RJ EXPRESS INC",
+  },
+  description: "American trucking company providing reliable routes across Eastern and Central USA. Join our team of professional drivers. Competitive pay, home time opportunities, and safe routes.",
   keywords: [
     "trucking",
     "logistics",
@@ -25,18 +28,34 @@ export const metadata: Metadata = {
     "Eastern USA",
     "Central USA",
     "RJ Express",
+    "trucking jobs",
+    "CDL jobs",
+    "truck driver jobs",
+    "freight transportation",
+    "trucking company",
+    "driver recruitment",
   ],
+  authors: [{ name: "RJ Express Inc" }],
+  creator: "RJ Express Inc",
+  publisher: "RJ Express Inc",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "RJ EXPRESS INC — Drive with Confidence. Earn More.",
-    description:
-      "Reliable transportation across Eastern & Central USA. Join our professional team of drivers.",
+    type: "website",
+    locale: "en_US",
     url: siteUrl,
     siteName: "RJ EXPRESS INC",
+    title: "RJ EXPRESS INC — Drive with Confidence. Earn More.",
+    description:
+      "Reliable transportation across Eastern & Central USA. Join our professional team of drivers. Competitive pay, home time opportunities, and safe routes.",
     images: [
       {
         url: "/images/logo.png",
@@ -45,8 +64,32 @@ export const metadata: Metadata = {
         alt: "RJ Express — Drive with Confidence",
       },
     ],
-    locale: "en_US",
-    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RJ EXPRESS INC — Drive with Confidence. Earn More.",
+    description:
+      "Reliable transportation across Eastern & Central USA. Join our professional team of drivers.",
+    images: ["/images/logo.png"],
+    creator: "@rjexpressinc",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Google Search Console verification code will be added here
+    // google: "your-google-verification-code",
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 
