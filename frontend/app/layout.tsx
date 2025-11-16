@@ -107,7 +107,6 @@ export default function RootLayout({
         {/* eslint-disable-next-line react/no-unknown-property */}
         <div suppressHydrationWarning>
           {/* Providers wraps children with I18nextProvider */}
-          {/* @ts-expect-error Server Component boundary */}
           <ProvidersWrapper>{children}</ProvidersWrapper>
         </div>
       </body>
