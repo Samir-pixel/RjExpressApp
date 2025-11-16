@@ -67,16 +67,8 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex justify-center"
             >
-              <motion.button
-                onClick={() => scrollToSection("contact")}
-                className="btn-primary btn-glow px-8 py-4 rounded-full text-lg font-semibold"
-                animate={{ scale: [1, 1.04, 1] }}
-                transition={{ duration: 1, repeat: Infinity, repeatDelay: 4 }}
-              >
-                Join Our Team
-              </motion.button>
               <button
                 onClick={() => scrollToSection("about")}
                 className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#001B44] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
