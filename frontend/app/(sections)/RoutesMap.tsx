@@ -32,6 +32,17 @@ export default function RoutesMap() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Function to permanently fix line visibility
   const fixLineVisibility = useCallback((line: SVGPathElement) => {
@@ -201,12 +212,21 @@ export default function RoutesMap() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#FFD700] mb-4">
             Our Driving Routes
           </h2>
-          <p className="text-lg text-gray-300">
+          <p className="text-lg text-gray-300 hidden md:block">
             Hover over routes to see details
           </p>
         </motion.div>
 
-        <div ref={mapRef} className="relative" onMouseMove={handleMouseMove} onClick={() => setSelectedCity(null)}>
+        <div 
+          ref={mapRef} 
+          className="relative" 
+          onMouseMove={(e) => {
+            if (!isMobile) {
+              handleMouseMove(e);
+            }
+          }} 
+          onClick={() => setSelectedCity(null)}
+        >
           {/* USA Map */}
           <img 
             src="/images/usa-map.svg" 
@@ -269,9 +289,17 @@ export default function RoutesMap() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   fill="none"
-                  className="cursor-pointer transition-all duration-300 hover:stroke-[#FFFFFF] hover:stroke-[4]"
-                  onMouseEnter={() => setHoveredRoute(index)}
-                  onMouseLeave={() => setHoveredRoute(null)}
+                  className="cursor-pointer transition-all duration-300 md:hover:stroke-[#FFFFFF] md:hover:stroke-[4]"
+                  onMouseEnter={() => {
+                    if (!isMobile) {
+                      setHoveredRoute(index);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      setHoveredRoute(null);
+                    }
+                  }}
                 />
               );
             })}
@@ -291,8 +319,16 @@ export default function RoutesMap() {
               return (
                 <g 
                   key={city.name}
-                  onMouseEnter={() => setHoveredCity(city.name)}
-                  onMouseLeave={() => setHoveredCity(null)}
+                  onMouseEnter={() => {
+                    if (!isMobile) {
+                      setHoveredCity(city.name);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      setHoveredCity(null);
+                    }
+                  }}
                 >
                   {/* City Dot */}
                   <circle
@@ -390,14 +426,14 @@ export default function RoutesMap() {
             </motion.g>
           </svg>
 
-          {/* Floating Info Card */}
+          {/* Floating Info Card - Desktop only */}
           {hoveredRoute !== null && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.3 }}
-              className="absolute pointer-events-none z-10"
+              className="hidden md:block absolute pointer-events-none z-10"
               style={{
                 left: mousePosition.x + 20,
                 top: mousePosition.y - 20,
@@ -429,6 +465,46 @@ export default function RoutesMap() {
               </div>
             </motion.div>
           )}
+        </div>
+
+        {/* Route Cards - Mobile only */}
+        <div className="md:hidden mt-8 space-y-4">
+          {routes.map((route, index) => (
+            <motion.div
+              key={`${route.from}-${route.to}-card`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-black/80 backdrop-blur-md rounded-lg p-4 border border-white/20 shadow-xl"
+            >
+              <div className="text-white">
+                <h3 className="font-bold text-[#FFD700] mb-3 text-lg">
+                  {route.from} → {route.to}
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-300">Время:</span>
+                    <span className="text-white font-semibold">{route.timeFormatted}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-300">Расстояние:</span>
+                    <span className="text-white font-semibold">{route.distance} км</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-300">Highway:</span>
+                    <span className="text-white font-semibold">{route.highway}</span>
+                  </div>
+                </div>
+                <div className="mt-3 pt-3 border-t border-white/10">
+                  <div 
+                    className="w-full h-1 rounded-full"
+                    style={{ backgroundColor: route.color }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>
