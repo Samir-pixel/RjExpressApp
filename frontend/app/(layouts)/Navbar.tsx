@@ -33,14 +33,29 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className={`${isScrolled ? "py-2" : "py-3"} px-0 sm:px-2`}>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+      <div className={`${isScrolled ? "py-2" : "py-3"} px-4 md:px-2`}>
+        <div className="flex items-center justify-between relative">
+          {/* Logo - only visible on mobile, positioned on the left with fixed width */}
+          <div className="md:hidden flex items-center w-12">
+            <img
+              src="/images/logo.png"
+              alt="RJ Express"
+              className="h-12 w-12"
+            />
+          </div>
+
+          {/* Desktop: Logo and company name together */}
+          <div className="hidden md:flex items-center gap-2">
             <img
               src="/images/logo.png"
               alt="RJ Express"
               className="h-40 w-40"
             />
+            <span className="text-xl font-bold text-white">RJ EXPRESS INC</span>
+          </div>
+
+          {/* Company name - centered on mobile */}
+          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2">
             <span className="text-xl font-bold text-white">RJ EXPRESS INC</span>
           </div>
 
@@ -53,9 +68,9 @@ export default function Navbar() {
             <button onClick={() => scrollToSection("contact")} className="btn-primary btn-glow px-6 py-2 rounded-full hover:scale-[1.03] active:scale-[0.98]">Join Our Team</button>
           </div>
 
-          {/* Mobile actions */}
-          <div className="md:hidden flex items-center gap-3">
-            <button aria-label="Menu" onClick={() => setIsOpen((v) => !v)} className="text-white text-2xl">
+          {/* Mobile actions - fixed width to match logo width for perfect centering */}
+          <div className="md:hidden flex items-center justify-end w-12">
+            <button aria-label="Menu" onClick={() => setIsOpen((v) => !v)} className="text-white text-3xl">
               {isOpen ? "✕" : "☰"}
             </button>
           </div>
@@ -71,13 +86,6 @@ export default function Navbar() {
             <button onClick={() => scrollToSection("contact")} className="btn-primary btn-glow mt-2 px-4 py-2.5 rounded-full">Join Our Team</button>
           </div>
         )}
-      </div>
-
-      {/* Sticky CTA on mobile */}
-      <div className="md:hidden fixed bottom-4 left-0 right-0 flex justify-center">
-        <button onClick={() => scrollToSection("contact")} className="btn-primary btn-glow px-5 py-2.5 rounded-full shadow-lg hover:scale-[1.03] active:scale-[0.98]">
-          Join Our Team
-        </button>
       </div>
     </motion.nav>
   );
