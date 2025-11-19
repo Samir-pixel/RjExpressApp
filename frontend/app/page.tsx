@@ -9,7 +9,7 @@ import Footer from "./(sections)/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen font-sans" suppressHydrationWarning>
+    <main className="min-h-screen font-sans overflow-x-hidden" suppressHydrationWarning>
       <Navbar />
       <Hero />
       <About />

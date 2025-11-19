@@ -15,7 +15,7 @@ export default function Hero() {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen overflow-hidden text-white flex items-center">
+    <section ref={ref} id="hero" className="relative w-full h-screen md:min-h-screen md:h-auto overflow-hidden text-white flex items-center">
       {/* Video background with fallback */}
       <motion.div style={{ y: yParallax }} className="absolute inset-0 parallax-bg">
         <video
@@ -31,9 +31,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-6xl px-0 py-0 md:px-6 md:py-24 sm:py-32 w-full h-screen md:h-auto flex items-center">
+      <div className="relative w-full h-full md:mx-auto md:max-w-6xl md:px-6 md:py-24 md:sm:py-32 flex items-center">
         <div className="flex items-center justify-center text-center w-full px-4 md:px-0">
-          <div className="max-w-4xl w-full">
+          <div className="w-full md:max-w-4xl">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

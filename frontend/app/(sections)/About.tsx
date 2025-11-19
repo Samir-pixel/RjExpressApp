@@ -29,7 +29,7 @@ export default function About() {
     animate(setSupport, 24, 1, 60);
   }, [visible]);
   return (
-    <section id="about" className="py-20 bg-[#F8F9FB]">
+    <section id="about" className="py-20 bg-[#F8F9FB] -mt-px md:mt-0">
       <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
