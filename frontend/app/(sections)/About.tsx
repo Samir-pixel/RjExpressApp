@@ -53,7 +53,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <p className="text-lg text-[#1E1E1E] mb-8 leading-relaxed">
-              We are a Midwest-based trucking company providing stable loads, fair pay, and safe routes.
+              We are an Eastern-based trucking company providing stable loads, fair pay, and safe routes.
               We focus on stability, fairness, and long-term cooperation.
             </p>
             
