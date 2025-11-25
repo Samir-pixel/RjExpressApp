@@ -16,9 +16,9 @@ const cities = [
 
 // Route data with distances, times, and highways - only 3 main routes
 const routes = [
-  { from: "Philadelphia", to: "Indianapolis", distance: 1031, timeFormatted: "10ч 52мин", highway: "I-76 W, I-70 W", color: "#FFD700" },
-  { from: "Newark", to: "Cincinnati", distance: 996, timeFormatted: "10ч 54мин", highway: "I-95 S, I-76 W", color: "#FF6B35" },
-  { from: "Baltimore", to: "Louisville", distance: 954, timeFormatted: "10ч 20мин", highway: "I-95 S, I-70 W", color: "#4ECDC4" }
+  { from: "Philadelphia", to: "Indianapolis", distance: 1031, timeFormatted: "10h 52min", highway: "I-76 W, I-70 W", color: "#FFD700" },
+  { from: "Newark", to: "Cincinnati", distance: 996, timeFormatted: "10h 54min", highway: "I-95 S, I-76 W", color: "#FF6B35" },
+  { from: "Baltimore", to: "Louisville", distance: 954, timeFormatted: "10h 20min", highway: "I-95 S, I-70 W", color: "#4ECDC4" }
 ];
 
 export default function RoutesMap() {
@@ -449,12 +449,12 @@ export default function RoutesMap() {
                   </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <span className="text-gray-300">Время:</span>
+                      <span className="text-gray-300">Time:</span>
                       <span className="text-white font-semibold">{routes[hoveredRoute].timeFormatted}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-gray-300">Расстояние:</span>
-                      <span className="text-white font-semibold">{routes[hoveredRoute].distance} км</span>
+                      <span className="text-gray-300">Distance:</span>
+                      <span className="text-white font-semibold">{routes[hoveredRoute].distance} km</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-gray-300">Highway:</span>
@@ -484,12 +484,12 @@ export default function RoutesMap() {
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-300">Время:</span>
+                    <span className="text-gray-300">Time:</span>
                     <span className="text-white font-semibold">{route.timeFormatted}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-300">Расстояние:</span>
-                    <span className="text-white font-semibold">{route.distance} км</span>
+                    <span className="text-gray-300">Distance:</span>
+                    <span className="text-white font-semibold">{route.distance} km</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-300">Highway:</span>

@@ -16,7 +16,7 @@ const benefits = [
   { 
     emoji: "🌍", 
     title: "For Foreign Drivers", 
-    desc: "Multilingual dispatch (EN, RU, AR, HINDI) and cultural support" 
+    desc: "Multilingual dispatch (EN,RU,TJ,UZ) and cultural support" 
   },
   { 
     emoji: "🧭", 

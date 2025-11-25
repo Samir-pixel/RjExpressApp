@@ -41,7 +41,7 @@ export default function About() {
         >
           <h2 className="text-4xl font-bold text-[#001B44] mb-4">About Us</h2>
           <p className="text-lg text-[#6B7280] max-w-3xl mx-auto">
-            RJ EXPRESS INC — американская транспортная компания, предоставляющая надёжные рейсы по Восточной и Центральной части США.
+            RJ EXPRESS INC — American transportation company providing reliable routes across the Eastern and Central United States.
           </p>
         </motion.div>
 
